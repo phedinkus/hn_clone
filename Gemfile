@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 1.0.1'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+  gem 'watchr'
 end
 
 # To use ActiveModel has_secure_password
