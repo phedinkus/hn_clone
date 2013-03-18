@@ -1,20 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<h1>
+  <%= link_to @post.title, @post.url %>
+</h1>
 
 <p>
-  <strong>Url:</strong>
-  <%= @post.url %>
-</p>
-
-<p>
-  <strong>User:</strong>
+  Posted by: 
   <%= @post.user.username %>
 </p>
+<h2>
+	<%= "Comments (#{@post.comments.count})" %>
+</h2>
 
+<h3>New comment</h3>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= render 'comments/form' %>
+
+<% @comments.each do |comment| %>
+	<div class='comment'>
+		<%= "Comment by #{comment.user.username}" %>
+		<p><%= comment.content %></p>
+		
+	</div>
+<% end %>
+
 <%= link_to 'Back', posts_path %>

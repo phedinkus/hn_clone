@@ -22,7 +22,7 @@
   <%= post_form.fields_for :user do |user_form| %>
     <div class="field">
       <%= user_form.label :username %><br />
-      <%= user_form.text_field :username, value: (@post.username if @post.user) %>
+      <%= user_form.text_field :username, value: (@post.user.username if @post.user) %>
     </div>
   <% end %>
 

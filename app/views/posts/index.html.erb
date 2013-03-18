@@ -1,29 +1,15 @@
-<h1>Listing posts</h1>
+<h1>Posts</h1>
+<%= link_to 'New Post', new_post_path %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Post Title</th>
-      <th>Url</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.user.username %></td>
-      <td><%= post.title %></td>
-      <td><%= post.url %></td>
-      <td><%= link_to 'Show', post %></td>
-      <td><%= link_to "Comments (#{post.comments.count})", post_comments_path(post) %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @posts.each do |post| %>
+  <article class='comment'>
+    
+    <h3><%= link_to "#{post.title} (#{post.url})", post.url %></h3>
+    posted by: <%= post.user.username %>
+    <%= link_to "Comments (#{post.comments.count})", post_path(post) %>
+  </article>
+<% end %>
 
 <br />
 
-<%= link_to 'New Post', new_post_path %>
+

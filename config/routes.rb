@@ -1,7 +1,9 @@
 LegitHn::Application.routes.draw do
-  resources :comments
+  
 
-  resources :posts
+  resources :posts, :only => [:index, :show, :new, :create] do 
+    resources :comments
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
