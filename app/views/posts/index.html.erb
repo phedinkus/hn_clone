@@ -3,11 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Url</th>
       <th>User</th>
-      <th>Vote counter</th>
-      <th></th>
+      <th>Post Title</th>
+      <th>Url</th>
       <th></th>
       <th></th>
     </tr>
@@ -16,13 +14,11 @@
   <tbody>
     <% @posts.each do |post| %>
     <tr>
+      <td><%= post.user.username %></td>
       <td><%= post.title %></td>
       <td><%= post.url %></td>
-      <td><%= post.user_id %></td>
-      <td><%= post.vote_counter %></td>
       <td><%= link_to 'Show', post %></td>
-      <td><%= link_to 'Edit', edit_post_path(post) %></td>
-      <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to "Comments (#{post.comments.count})", post_comments_path(post) %></td>
     </tr>
     <% end %>
   </tbody>

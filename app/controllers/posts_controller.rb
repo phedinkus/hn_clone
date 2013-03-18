@@ -14,7 +14,9 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    
     @post = Post.new
+    
   end
 
   # GET /posts/1/edit
@@ -25,6 +27,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = User.where(username: params[:post][:user][:username]).first_or_create(username: params[:post][:user][:username])
 
     respond_to do |format|
       if @post.save
@@ -69,6 +72,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :url, :user_id, :vote_counter)
+
+      params.require(:post).permit(:title, :url, :vote_counter)
     end
 end

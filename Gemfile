@@ -30,6 +30,8 @@ group :development, :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
   gem 'watchr'
+
+  gem 'pry'
 end
 
 # To use ActiveModel has_secure_password
