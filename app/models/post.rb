@@ -4,5 +4,5 @@ class Post < ActiveRecord::Base
 
 	validates :url, presence: true, format: URI::regexp(%w(http https))
 	validates :title, presence: true
-	validates :user, presence: true
+	validates :user, associated: true, presence: true
 end

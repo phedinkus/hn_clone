@@ -1,25 +1,31 @@
 <p id="notice"><%= notice %></p>
 
 <h1>
-  <%= link_to @post.title, @post.url %>
+  <%= link_to "#{@post.title} (#{@post.url})", @post.url %>
 </h1>
 
 <p>
   Posted by: 
   <%= @post.user.username %>
 </p>
+
+	
+
+
+
+<div class='comment-form'>
+	<h3>New comment</h3>
+	<%= render :partial => "comments/form", :locals => { :post => @post } %>
+</div>
 <h2>
 	<%= "Comments (#{@post.comments.count})" %>
 </h2>
 
-<h3>New comment</h3>
-
-<%= render 'comments/form' %>
-
 <% @comments.each do |comment| %>
+
 	<div class='comment'>
-		<%= "Comment by #{comment.user.username}" %>
-		<p><%= comment.content %></p>
+		<%= "Comment by #{comment.user.username}:" %>
+		<p class="content"><%= comment.content %></p>
 		
 	</div>
 <% end %>

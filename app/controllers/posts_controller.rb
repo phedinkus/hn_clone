@@ -4,14 +4,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order('vote_counter DESC')
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
     @comments = @post.comments.load
-    @comment = @post.comments.build
+    @comment = Comment.new
   end
 
   # GET /posts/new
@@ -33,6 +33,13 @@ class PostsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def upvote
+    Post.increment_counter(:vote_counter, params[:post_id])
+    respond_to do |format|
+      format.html { redirect_to posts_path }
     end
   end
 
